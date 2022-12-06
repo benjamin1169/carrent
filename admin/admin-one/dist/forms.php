@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__)).'/../../../controllers/service_controller.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 
 ?>
 
@@ -11,7 +11,7 @@ include_once(dirname(__FILE__)).'/../../../controllers/service_controller.php';
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Forms - Admin One Tailwind CSS Admin Dashboard</title>
 
-  <!-- Tailwind is included -->
+  <!-- Tailwind is require_onced -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
@@ -256,7 +256,7 @@ include_once(dirname(__FILE__)).'/../../../controllers/service_controller.php';
                 <div class="field-body">
                   <div class="field">
                     <div class="control icons-left">
-                      <input class="input" type="number" name="service_price" placeholder="Include service price"> 
+                      <input class="input" type="number" name="service_price" placeholder="require_once service price"> 
                     </div>
                   </div>
                   </div>

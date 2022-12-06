@@ -1,8 +1,8 @@
 <?php
-include("../../../settings/core.php");
-include_once (dirname(__FILE__))."/../../../controllers/customer_controller.php";
-include_once (dirname(__FILE__))."/../../../controllers/service_controller.php";
-include_once (dirname(__FILE__))."/../../../controllers/booking_controller.php";
+require_once($_SERVER['DOCUMENT_ROOT']."/settings/core.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/customer_controller.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/service_controller.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/booking_controller.php");
 
 $customers = returnallCustomer_ctr();
 $services = select_all_service_controller();
@@ -18,7 +18,7 @@ $appointments = display_booking($_SESSION['user_id']);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tables - Admin One Tailwind CSS Admin Dashboard</title>
 
-  <!-- Tailwind is included -->
+  <!-- Tailwind is require_onced -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
