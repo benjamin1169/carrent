@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/service_controller.php');
 // return array of all rows, or false (if it failed)
 $service = select_one_service_controller($_GET['service_id']);
 

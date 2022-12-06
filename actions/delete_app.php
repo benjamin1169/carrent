@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/booking_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/booking_controller.php');
 // check if button is clicked
 if(isset($_POST["delete"])){
     // grab form data

@@ -1,6 +1,6 @@
 
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/settings/core.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/settings/core.php');
 ?><!doctype html>
 <html lang="en">
 

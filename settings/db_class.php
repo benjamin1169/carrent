@@ -2,7 +2,7 @@
 //database
 
 //database credentials
-require_once($_SERVER['DOCUMENT_ROOT'].'db_credentials.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/settings/db_credentials.php');
 
 class db_connection{
 

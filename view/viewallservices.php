@@ -2,7 +2,7 @@
 
 // require_once('../controllers/service_controller.php');
 // return array of all rows, or false (if it failed)
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/service_controller.php');
 $service = select_all_service_controller();
 
 

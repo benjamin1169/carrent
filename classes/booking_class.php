@@ -1,6 +1,6 @@
 <?php
 //connect to database class
-require_once($_SERVER["DOCUMENT_ROOT"]."/carrent-master/settings/db_class.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/carrent-master/carrent-master/settings/db_class.php");
 
 
 class Booking extends db_connection{

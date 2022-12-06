@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/booking_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/booking_controller.php');
 
 if(isset($_POST['book'])){
 

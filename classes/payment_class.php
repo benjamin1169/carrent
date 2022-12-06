@@ -1,6 +1,6 @@
 <?php
 //connect to database class
-require_once($_SERVER['DOCUMENT_ROOT']."/settings/db_class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/carrent-master/settings/db_class.php");
 
 class Payment extends db_connection{
     function insert_payment_class($amount, $customer_id, $app_id, $currency, $payment_date){

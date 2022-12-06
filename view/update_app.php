@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/service_controller.php');
 $new = select_all_cat_controller(); 
 $services = select_all_service_controller();  
 

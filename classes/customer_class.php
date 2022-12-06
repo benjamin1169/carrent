@@ -3,7 +3,7 @@
 // $path_classes_payment1 = $_SERVER['DOCUMENT_ROOT'];
 // $path_classes_payment1 .= "/carrent-master/settings/db_class.php";
 // require_once($path_classes_payment1);
-require_once($_SERVER['DOCUMENT_ROOT'].'/settings/db_class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/settings/db_class.php');
 
 
 class CustomerClass extends db_connection{

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/controllers/service_controller.php');
 
 
 // check if theres a POST variable with the name 'addButton'

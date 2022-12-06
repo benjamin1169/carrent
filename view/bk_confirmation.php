@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/booking_controller.php");
-	  require_once ($_SERVER['DOCUMENT_ROOT']."/functions/functions.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/carrent-master/controllers/booking_controller.php");
+	  require_once ($_SERVER['DOCUMENT_ROOT']."/carrent-master/functions/functions.php");
 	$ip = getIPAddress(); 
     $apnt = display_booking($_SESSION["user_id"]);
 	$total = 0;

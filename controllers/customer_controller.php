@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/classes/customer_class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/carrent-master/classes/customer_class.php');
 
 function insertCustomer_ctr($name,$email,$password,$contact,$userRole){
   $add_customer= new CustomerClass();
