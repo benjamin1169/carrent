@@ -1,6 +1,6 @@
 <?php
-include dirname(__FILE__).('/settings/core.php');
-include dirname(__FILE__).'/controllers/service_controller.php';
+include $_SERVER['DOCUMENT_ROOT'].'/settings/core.php';
+include $_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php';
 $data = select_all_cat_controller(); 
 $services = select_all_service_controller();  
 $basepath = './images_fd/';
