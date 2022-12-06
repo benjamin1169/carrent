@@ -1,3 +1,11 @@
+<?php
+include dirname(__FILE__).('/settings/core.php');
+include dirname(__FILE__).'/controllers/service_controller.php';
+$data = select_all_cat_controller(); 
+$services = select_all_service_controller();  
+$basepath = './images_fd/';
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -16,6 +24,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
     <link rel="stylesheet" href="css/aos.css">
 
     <!-- MAIN CSS -->
@@ -45,8 +54,7 @@
           <div class="row align-items-center position-relative">
 
             <div class="col-3 ">
-              <div class="<img alt=" src="/images/stmiclogo.png">
-                <a href="index.php">CarRent</a>
+              <div class=""><img alt="" src="images/stmiclogo.png">
               </div>
             </div>
 
@@ -59,18 +67,18 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="index.php" class="nav-link">Home</a></li>
-                  <li><a href="services.html" class="nav-link">Services</a></li>
-                  <li><a href="cars.html" class="nav-link">Rent A Car</a></li>
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
-                  <form action="" class="search-bar">
-	                <input type="search" name="searchbutton" pattern=".*\S.*" required>
-	                <button class="search-btn" type="submit">
-		              <span>Search</span>
-	                </button>
-</form>
+                  <li class=""><a href="index.php" class="nav-link"><u>Home</u></a></li>
+                  <li><a href="services.php" class="nav-link">Services</a></li>
+                  <li><a href="cars.php" class="nav-link">Rent A Car</a></li>
+                  <li><a href="about.php" class="nav-link">About</a></li>
+                  <li><a href="donate.php" class="nav-link">Donate</a></li>
+                  <li><a href="blog.php" class="nav-link">Blog</a></li>
+                  <li><a href="contact.php" class="nav-link">Contact</a></li>
+                  <?php if(!isset($_SESSION['user_id'])){ ?>
+                  <li><a href="view/login_form.php" class="nav-link"><span class="icon-user"></span></a></li>
+                  <?php }else{ ?>
+                  <li><a href="settings/core.php?logout=true" class="nav-link">Logout</a></li>
+                  <?php } ?>
                 </ul>
               </nav>
             </div>
@@ -112,7 +120,7 @@
                 </ul>
                 <div class="d-flex align-items-center bg-light p-3">
                   <span>$150/day</span>
-                  <a href="contact.html" class="ml-auto btn btn-primary">Rent Now</a>
+                  <a href="contact.php" class="ml-auto btn btn-primary">Rent Now</a>
                 </div> -->
               </div>
             </div>
@@ -126,7 +134,7 @@
         <div class="row">
           <div class="col-12">
             
-              <form class="trip-form">
+              <form class="trip-form" action="actions/book.php" method="POST">
                 <div class="row align-items-center mb-4">
                   <div class="col-md-6">
                     <h3 class="m-0">Begin your trip here</h3>
@@ -137,25 +145,34 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-md-3">
-                    <label for="cf-1">Where you from</label>
-                    <input type="text" id="cf-1" placeholder="Your pickup address" class="form-control">
-                  </div>
+                    <label for="cf-1">What car brand</label>
+                    <select class="form-control" name="service_name" id="services">
+                    <?php
+                    foreach($services as $key => $value) {
+                        echo '<option value="' .$value["service_id"] . '">'. $value["service_name"] .'</option>'; 
+                    }
+                    ?>
+			</select>
+                    </div>
                   <div class="form-group col-md-3">
-                    <label for="cf-2">Where you go</label>
-                    <input type="text" id="cf-2" placeholder="Your drop-off address" class="form-control">
+                    <label for="cf-2">Which type of vehicle</label>
+                    <select class="form-control" name="service_cat" id="cat_name">
+                      <?php
+                      foreach($data as $key => $value) {
+                          echo '<option value="' .$value["cat_id"] . '">'. $value["cat_name"] .'</option>'; 
+                      }
+                    ?>
+			</select>
                   </div>
                   <div class="form-group col-md-3">
                     <label for="cf-3">Journey date</label>
-                    <input type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="cf-4">Return date</label>
-                    <input type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+                    <input class="form-control px-3" type="datetime-local" name="app_date" id="Test_DatetimeLocal">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="submit" value="Submit" class="btn btn-primary">
+	                  <input type="hidden" value="<?php echo $_SESSION['user_id'] ?>" name="customer_id">
+                    <input type="submit" value="Book" name="book" class="btn btn-primary">
                   </div>
                 </div>
               </form>
@@ -171,7 +188,7 @@
         <div class="row">
           <div class="col-lg-3">
             <h3>Our Offer</h3>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nesciunt nemo vel earum maxime neque!</p>
+            <p class="mb-4">We offer you memorable ride experience at affordable cost. We never dissapoint</p>
             <p>
               <a href="#" class="btn btn-primary custom-prev">Previous</a>
               <span class="mx-2">/</span>
@@ -184,45 +201,48 @@
 
 
             <div class="nonloop-block-13 owl-carousel">
-              <div class="item-1">
-                <a href="#"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-                <div class="item-1-contents">
-                  <div class="text-center">
-                  <h3><a href="#">Range Rover S64 Coupe</a></h3>
-                  <div class="rating">
-                    <span class="icon-star text-warning"></span>
-                    <span class="icon-star text-warning"></span>
-                    <span class="icon-star text-warning"></span>
-                    <span class="icon-star text-warning"></span>
-                    <span class="icon-star text-warning"></span>
-                  </div>
-                  <div class="rent-price"><span>$250/</span>day</div>
-                  </div>
-                  <ul class="specs">
-                    <li>
-                      <span>Doors</span>
-                      <span class="spec">4</span>
-                    </li>
-                    <li>
-                      <span>Seats</span>
-                      <span class="spec">5</span>
-                    </li>
-                    <li>
-                      <span>Transmission</span>
-                      <span class="spec">Automatic</span>
-                    </li>
-                    <li>
-                      <span>Minium age</span>
-                      <span class="spec">18 years</span>
-                    </li>
-                  </ul>
-                  <div class="d-flex action">
-                    <a href="contact.html" class="btn btn-primary">Rent Now</a>
+            <?php
+            $all_cars = select_all_service_controller();
+
+            foreach ($all_cars as $item) {
+            ?>
+
+                <div class="item-1" style="height: max-content !important;"><a href="view/singleview.php?service_id=<?php echo( $item['service_id']); ?>">
+                  <img src="<?php echo $basepath . basename( $item['service_image']) ?>" class="img-fluid" style="object-fit:cover; height:200px;">
+            </a><div class="item-1-contents">
+                    <div class="text-center">
+
+                      <h3><a href="#"><?php echo $item['service_name'] ?></a></h3>
+                      <div class="rating">
+                        <span class="icon-star text-warning"></span>
+                        <span class="icon-star text-warning"></span>
+                        <span class="icon-star text-warning"></span>
+                        <span class="icon-star text-warning"></span>
+                        <span class="icon-star text-warning"></span>
+                      </div>
+                      <div>
+                      <a href="#"><?php echo $item['service_price'] ?></a>
+                    </div>
+
+                    </div>
+                    <ul class="specs" style="height: max-content;">
+
+                      <li>
+                        <span>Description</span>
+                        <p><a href="#"><?php echo $item['service_desc'] ?></a></p>
+                      </li>
+
+                    </ul>
+                    <div class="d-flex action">
+                      <a href="./view/booking.php" class="btn btn-primary">Rent Now</a>
+                    </div>
                   </div>
                 </div>
-              </div>
+            <?php
+            }
+        ?>
 
-
+<!--
               <div class="item-1">
                 <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
                 <div class="item-1-contents">
@@ -256,11 +276,11 @@
                     </li>
                   </ul>
                   <div class="d-flex action">
-                    <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                    <a href="contact.php" class="btn btn-primary">Rent Now</a>
                   </div>
                 </div>
               </div>
-
+      -->
             </div>
             
           </div>
@@ -283,7 +303,7 @@
               </span>
               <div class="service-1-contents">
                 <h3>Repair</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+                <p>We liasie with companies such as Toyota to offer repair services</p>
               </div>
             </div>
           </div>
@@ -294,7 +314,7 @@
               </span>
               <div class="service-1-contents">
                 <h3>Car Accessories</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+                <p>We partner with Yakohama to sell car accessories such as Mitsubishi</p>
               </div>
             </div>
           </div>
@@ -305,7 +325,7 @@
               </span>
               <div class="service-1-contents">
                 <h3>Own a Car</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+                <p>We give opportunities to customers to own their car for the day</p>
               </div>
             </div>
           </div>
@@ -318,21 +338,21 @@
       <div class="row justify-content-center text-center">
         <div class="col-7 text-center mb-5">
           <h2>How it works</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
+          <p>This is guide to book any of our vehicle services</p>
         </div>
       </div>
       <div class="how-it-works d-flex">
         <div class="step">
           <span class="number"><span>01</span></span>
-          <span class="caption">Time &amp; Place</span>
+          <span class="caption">Choose A Date & Time</span>
         </div>
         <div class="step">
           <span class="number"><span>02</span></span>
-          <span class="caption">Car</span>
+          <span class="caption">Choose your Car</span>
         </div>
         <div class="step">
           <span class="number"><span>03</span></span>
-          <span class="caption">Details</span>
+          <span class="caption">View your booking details</span>
         </div>
         <div class="step">
           <span class="number"><span>04</span></span>
@@ -352,14 +372,14 @@
         <div class="row justify-content-center text-center mb-5">
           <div class="col-7 text-center mb-5">
             <h2>Customer Testimony</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
+            <p>Many people have testfied of our great service and I assure you that you will to !</p>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="testimonial-2">
               <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
+                <p>"The driving experience was amazing. I wish I could have this everyday "</p>
               </blockquote>
               <div class="d-flex v-card align-items-center">
                 <img src="images/person_1.jpg" alt="Image" class="img-fluid mr-3">
@@ -370,7 +390,7 @@
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="testimonial-2">
               <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
+                <p>"No long talks, customer service is point. I cannot wait to be back again"</p>
               </blockquote>
               <div class="d-flex v-card align-items-center">
                 <img src="images/person_2.jpg" alt="Image" class="img-fluid mr-3">
@@ -381,7 +401,7 @@
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="testimonial-2">
               <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
+                <p>"Your prices match your quality of service. Good recommendation for others"</p>
               </blockquote>
               <div class="d-flex v-card align-items-center">
                 <img src="images/person_3.jpg" alt="Image" class="img-fluid mr-3">
@@ -399,51 +419,51 @@
         <div class="row justify-content-center text-center mb-5">
           <div class="col-7 text-center mb-5">
             <h2>Our Blog</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
+            <p>We deal with every thing automobile. We share stories on how to care for your car and look our for the best cars</p>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
-              <a href="single.html">
+              <a href="single.php">
                 <img src="images/post_1.jpg" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">The best car rent in the entire planet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <h2><a href="single.php">Cars</a></h2>
+                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span></span>
+                <p>Cars our special to most of us and serve many purposes on a daily basis</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
-              <a href="single.html">
+              <a href="single.php">
                 <img src="images/img_2.jpg" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">The best car rent in the entire planet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <h2><a href="single.php">Latest News</a></h2>
+                <span class="meta d-inline-block mb-3">November 29, 2022<span class="mx-2">by</span></span>
+                <p>Recently, super car blondie advertised BMW newly manufactured sportscar.</p>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
-              <a href="single.html">
+              <a href="single.php">
                 <img src="images/img_3.jpg" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">The best car rent in the entire planet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <h2><a href="single.php">Tips on maintianing your car</a></h2>
+                <span class="meta d-inline-block mb-3">March 20, 2022 <span class="mx-2">by</span></span>
+                <p>Always ensure that you have fully filled fuel tank before moving out</p>
               </div>
             </div>
           </div>
@@ -458,7 +478,7 @@
         <div class="row">
           <div class="col-lg-3">
             <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                <p>St.Michael Rent-A-Car is a car rental service which makes it condusive for people to book vehicles for any trip they love to embark on within Accra </p>
           </div>
           <div class="col-lg-8 ml-auto">
             <div class="row">
