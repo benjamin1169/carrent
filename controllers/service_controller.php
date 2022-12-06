@@ -1,6 +1,6 @@
 <?php
 
-require(dirname(__FILE__)).'/../classes/service_class.php';
+require($_SERVER['DOCUMENT_ROOT'].'/classes/service_class.php');
 
 
 //CONTROLLER FOR CATEGORY 
