@@ -1,6 +1,6 @@
 <?php
 
-require($_SERVER['DOCUMENT_ROOT'].'/classes/service_class.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/classes/service_class.php');
 
 
 //CONTROLLER FOR CATEGORY 
