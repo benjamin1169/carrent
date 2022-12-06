@@ -4,7 +4,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-require("../controllers/customer_controller.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/customer_controller.php");
 
 if(isset($_POST['login'])){
     
@@ -42,7 +42,7 @@ if(isset($_POST['login'])){
         }
  
     }else{
-        header("Location: ../view/register");
+        header("Location: ../view/login_form.php");
     } 
 
 

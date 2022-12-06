@@ -1,6 +1,6 @@
 <?php
 
-require("../controllers/customer_controller.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/customer_controller.php");
 
 if(isset($_POST['Register'])){
 

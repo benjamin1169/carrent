@@ -95,7 +95,7 @@ class Service extends db_connection{
 
 <?php
 
-// require '../settings/db_class.php';
+// require_once '../settings/db_class.php';
 
 // class AddCAT extends db_connection{
 //     //CATEGORIES METHODS

@@ -1,6 +1,6 @@
 <?php
 
-include dirname(__FILE__).'/../controllers/service_controller.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 
 $service =  search_service_controller($_GET['search']);
 

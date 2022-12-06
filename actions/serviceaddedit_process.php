@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 
 
 // check if theres a POST variable with the name 'addButton'
@@ -48,7 +48,7 @@ if (isset($_POST['addButton'])) {
                     $result = add_service_controller($categoryname, $service_name, $service_price, $service_desc, $fileDestination, $service_keywords);
 
                     if ($result) {
-                        header("Location: ../admin/admin-one/dist/index.php");
+                        header("Location: ../admin/admin-one/dist/forms.php");
                         // echo "It works";
                     } else {
                         header("Location: ../admin/admin-one/dist/index.php");
@@ -92,9 +92,9 @@ if (isset($_POST['EditButton'])) {
     $results = update_service_controller($id, $categoryname, $service_name, $service_price, $service_desc, $service_keywords);
     // var_dump($results);
     if ($results) {
-        header("Location: ../");
+        header("Location: ../admin/admin-one/dist/index.php");
     } else {
-        header("Location: ../");
+        header("Location: ../admin/admin-one/dist/editservice.php");
     }
 }
 
@@ -111,8 +111,9 @@ if (isset($_GET["delete_id"])) {
     //echo $result;
 
     if ($result) {
-        // header("location: ../admin/service_display.php");
         echo "deleted";
+        header("location: ../admin/admin-one/dist/tables.php");
+      
     } else {
         echo "Unable to Delete";
     }

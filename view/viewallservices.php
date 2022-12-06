@@ -1,8 +1,8 @@
 <?php
 
-// require('../controllers/service_controller.php');
+// require_once('../controllers/service_controller.php');
 // return array of all rows, or false (if it failed)
-include dirname(__FILE__).'/../controllers/service_controller.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 $service = select_all_service_controller();
 
 

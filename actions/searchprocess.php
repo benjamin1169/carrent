@@ -1,6 +1,6 @@
 <?php
 
-require('../controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 
 
 if(isset($_GET['searchbutton']))

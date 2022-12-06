@@ -1,9 +1,9 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/settings/core.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
-//$data = select_all_cat_controller(); 
-//$services = select_all_service_controller();  
-//$basepath = './images_fd/';
+$data = select_all_cat_controller(); 
+$services = select_all_service_controller();  
+$basepath = './images_fd/';
 
 ?>
 <!doctype html>

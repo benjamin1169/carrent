@@ -1,6 +1,6 @@
 <?php
 //connect to the user account class
-include("../classes/payment_class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/classes/payment_class.php");
 
 //sanitize data
 function cleanText($data) 

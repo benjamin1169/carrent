@@ -2,7 +2,7 @@
 
 session_start();
 
-include ("../controllers/payment_controller.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/payment_controller.php");
 
 $email=$_POST['email'];
 $amount= $_POST['amount'];

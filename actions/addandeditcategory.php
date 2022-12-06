@@ -2,7 +2,7 @@
 
 session_start();
 
-require('../controllers/service_controller.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/service_controller.php');
 
 if(isset($_POST['AddCategory'])){
 
@@ -14,8 +14,8 @@ if(isset($_POST['AddCategory'])){
     echo $result;
    
     if($result){ 
-        // header("location: ../admin/category.php");
-        echo "insertion successful";
+        header("location: ../admin/admin-one/dist/addeditcatform.php");
+      
     }
     else {
         echo "insertion unsuccessful";
@@ -34,7 +34,7 @@ if(isset($_POST['editCategory'])){
    
     if($result){ 
         header("location: ../admin/admin-one/dist/addeditcatform.php");
-        echo "edited successfully";
+        
     }
     else {
         echo "insertion unsuccessful";

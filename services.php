@@ -1,5 +1,5 @@
 <?php
-include dirname(__FILE__).('/settings/core.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/settings/core.php');
 ?>
 
 <!doctype html>

@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include "../controllers/booking_controller.php";
-	  require "../functions/functions.php";
+    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/booking_controller.php");
+	  require_once ($_SERVER['DOCUMENT_ROOT']."/functions/functions.php");
 	$ip = getIPAddress(); 
     $apnt = display_booking($_SESSION["user_id"]);
 	$total = 0;
