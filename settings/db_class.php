@@ -2,7 +2,7 @@
 //database
 
 //database credentials
-require('db_credentials.php');
+require($_SERVER['DOCUMENT_ROOT'].'/settings/db_credentials.php');
 
 class db_connection{
 
