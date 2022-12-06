@@ -3,7 +3,7 @@
 
 //connect to database class
 
-include_once ($_SERVER['DOCUMENT_ROOT'].'/settings/db_class.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'/settings/db_class.php');
 
 class Service extends db_connection{
 
