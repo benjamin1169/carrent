@@ -33,11 +33,12 @@ if(isset($_POST['login'])){
         $_SESSION['user_id'] = $result["customer_id"];
         $_SESSION["user_role"] = $result["user_role"];
         $_SESSION['user_name'] = $result['customer_name'];
+        
 
         if ($_SESSION['user_role'] == 1){
-            header("Location: ../index.php");
+            header("Location: ../admin/admin-one/dist/index.php");
         }else{
-            header("Location: ../view/login_form.php");
+            header("Location: ../index.php");
         }
  
     }else{

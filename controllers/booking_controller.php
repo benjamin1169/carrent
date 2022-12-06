@@ -1,6 +1,6 @@
 <?php
 
-include "../classes/booking_class.php";
+require_once $_SERVER["DOCUMENT_ROOT"]."/carrent-master/classes/booking_class.php";
 
 
 //APPOINTMENT MANAGMENT

@@ -32,9 +32,8 @@ class Service extends db_connection{
     function updatecategory_cls($categoryname, $id){
         $sqltwo= "UPDATE `categories` set `cat_name`='$categoryname' WHERE `cat_id`='$id'";
         return $this->query($sqltwo);
-
-
     }
+    
     function deletecategory($id){
         $sqltwo="DELETE FROM `categories` WHERE `cat_id` = '$id' ";
         return $this->query($sqltwo);
@@ -47,7 +46,7 @@ class Service extends db_connection{
 
     function add_service($categoryname, $service_name, $service_price, $service_desc, $fileDestination, $service_keywords){
 		// return true or false
-        $sqltwo= "INSERT INTO services(`service_cat`, `service_name`, `service_price`, `service_desc`, `service_image`, `service_keywords` ) VALUES ('$categoryname', '$service_name', '$service_price', '$service_desc','$fileDestination', '$service_keywords')";
+        $sqltwo= "INSERT INTO services (`service_cat`, `service_name`, `service_price`, `service_desc`, `service_image`, `service_keywords` ) VALUES ('$categoryname', '$service_name', '$service_price', '$service_desc','$fileDestination', '$service_keywords')";
 		return $this->query($sqltwo); 
     }
 
@@ -58,7 +57,7 @@ class Service extends db_connection{
 
 	function select_one_service($id){
 		// return associative array or false
-		return $this->fetchOne("SELECT * FROM services WHERE service_id='$id'");
+		return $this->fetchOne("SELECT services.service_id, services.service_name, services.service_cat, services.service_price, services.service_image, services.service_desc, services.service_keywords, categories.cat_id, categories.cat_name FROM services left join categories on services.service_cat=categories.cat_id WHERE service_id='$id'");
 	}
 
 	function update_one_service($id, $categoryname, $service_name, $service_price, $service_desc, $service_keywords){

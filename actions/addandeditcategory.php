@@ -27,11 +27,13 @@ if(isset($_POST['editCategory'])){
 
     $categoryname=$_POST['cname'];
     $id=$_POST['cid'];
+
+    // echo $categoryname.'  ' .$id;
       
     $result = updateCategory_ctr($categoryname, $id);
    
     if($result){ 
-        // header("location: ../admin/category.php");
+        header("location: ../admin/admin-one/dist/addeditcatform.php");
         echo "edited successfully";
     }
     else {
@@ -39,6 +41,7 @@ if(isset($_POST['editCategory'])){
     }
 
 }
+
 // check if button is clicked
 if(isset($_GET["deleteCategory"])){
     // grab form data

@@ -1,12 +1,12 @@
 <?php
+require('../controllers/service_controller.php');
+// return array of all rows, or false (if it failed)
+$service = select_one_service_controller($_GET['service_id']);
 
-include dirname(__FILE__).'/../controllers/service_controller.php';
+$category =  $service['service_cat'];
+$searchcat = select_one_cat($category);
 
-$service =  search_service_controller($_GET['search']);
-
-$basepath = '../images_fd/'
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -57,91 +57,84 @@ $basepath = '../images_fd/'
 
           <div class="col-3">
             <div class="site-logo">
-              <a href="./../index.php">CarRent</a>
+              <a href="index.php" style='color: grey !important;'>CarRent</a>
             </div>
           </div>
-
-          <div class="col-9  text-right">
-
-
-            <span class="d-inline-block d-lg-none"><a href="#" class="text-black site-menu-toggle js-menu-toggle py-5 text-white"><span class="icon-menu h3 text-black"></span></a></span>
-
-
-
-            <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav ml-auto ">
-              <li><a href="./../index.php" class="nav-link">Home</a></li>
-                <li><a href="./../services.php" class="nav-link">Services</a></li>
-                <li class=""><a href="./../cars.php" class="nav-link"><u>Rent A Car</u></a></li>
-                <li><a href="./../about.php" class="nav-link">About</a></li>
-                <li><a href="./../blog.php" class="nav-link">Blog</a></li>
-              </ul>
-              <!-- <form method="GET" action="actions/searchprocess.php" class="search-bar">
-                  <input type="search" name="searchfield" pattern=".*\S.*" required>
-                  <button class="search-btn" type="submit" name="searchbutton">
-                  <span>Search</span>
-                  </button>
-              </form> -->
-            </nav>
-          </div>
-
-
+          <div class="col-9">
+        <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+        <ul class="site-menu main-menu js-clone-nav ml-auto ">
+        <li><a href="./../index.php" class="nav-link" style='color: grey !important;'>Home</a></li>
+            <li><a href="./../services.php" class="nav-link" style='color: grey !important;'>Services</a></li>
+            <li class=""><a href="./../cars.php" class="nav-link" style='color: grey !important;'><u>Rent A Car</u></a></li>
+            <li><a href="./../about.php" class="nav-link" style='color: grey !important;'>About</a></li>
+            <li><a href="./../blog.php" class="nav-link" style='color: grey !important;'>Blog</a></li>
+        </ul>
+  <!-- <form method="GET" action="actions/searchprocess.php" class="search-bar">
+        <input type="search" name="searchfield" pattern=".*\S.*" required>
+        <button class="search-btn" type="submit" name="searchbutton">
+          <span>Search</span>
+        </button>
+  </form> -->
+</nav>
         </div>
+        </div>
+
       </div>
+
+
+
+
+</div>
+
 
     </header>
 
-    <div class="site-section bg-black">
-      <div class="container">
-        <div class ="center">
-    
-          <?php
-              
-          $service =  search_service_controller($_GET['search']);
 
-          foreach ($service as $item) {
-          ?>
-
-          <div class="item-1" style="height: max-content !important;">
-            <!-- <img style='height: 200px; width: 200px' src='{$x['service_image']}' alt='Card image cap'> -->
-            <img src="<?php echo $basepath . basename( $item['service_image']) ?>" class="img-fluid" style="object-fit:cover; width:100%;">
-            <div class="item-1-contents">
-              <div class="text-align">
-
-                <h3><a href="#"><?php echo $item['service_name'] ?></a></h3>
-                <div class="rating">
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                </div>
-                <div>
-                <a href="#">Ghc<?php echo $item['service_price'] ?></a>
-              </div>
-
-              </div>
-              <ul class="specs" style="height: max-content;">
-
-                <li>
-                  <span>Description</span>
-                  <p><a href="#"><?php echo $item['service_desc'] ?></a></p>
-                </li>
-
-              </ul>
-              <div class="d-flex action">
-                <a href="./booking.php" class="btn btn-primary">Rent Now</a>
-              </div>
+        <div class='singleProduct' style='display: flex; margin-top: 200px; margin-left: 450px;'>
+            <div class='image mb-5 pb-5'>
+            <img style='height: 400px; width: 400px' src="<?php echo $service['service_image']; ?>" alt="">
             </div>
-          </div>
-          <?php
-              }
-          ?>
+
+            <div class='content' style='margin-left: 70px'>
+
+                <h1><?php echo $searchcat['cat_name'] ?></h1>
+                <h4><?php echo $service['service_name'] ?></h4>
+                <h4 style='color: grey;'> <?php echo $service['service_price'] ?></h4>
+                <h5 style='color: grey;'><?php echo $service['service_desc'] ?></h5>
+                <a href='../view/booking.php?id=<?php echo  $service['service_id'] ?>'  class='btn btn-primary'>Rent Now</a>
+               
+            </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-    <footer class="site-footer">
+        
+
+
+    
+</body>
+</html>
+
+
+
+
+
+
+<!-- 
+       <form method="post" action="../actions/searchprocess.php">
+
+        <input type="text" class="form-control mb-0" id="search" name="search" placeholder="Type here to search" style="width: 400px; margin-left: 250px">
+        <button style="margin-left: -50px" class="btn btn-primary float-right" type="submit" name="searchbutton">Search</button>
+
+</form> -->
+
+</header>
+<!-- <h3>Your search results</h3> -->
+<!-- <div class="ftco-blocks-cover-1"> -->
+      <!-- <div class="ftco-cover-1 overlay innerpage" style="background-image: url('images/hero_2.jpg')"> -->
+        <!-- <div class="container"> -->
+          <!-- <div class="row align-items-center justify-content-center"> -->
+            <!-- <div class="col-lg-6 text-center"> -->
+              <div class="site-section bg-dark">
+              <footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -208,9 +201,9 @@ $basepath = '../images_fd/'
       </div>
     </footer>
 
+    </div>
 
-
-
+ 
 <script src="../js/jquery-3.3.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
@@ -226,9 +219,4 @@ $basepath = '../images_fd/'
   <script src="../js/main.js"></script>
 
 </body>
-
-
-
-</html>
-
 

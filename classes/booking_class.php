@@ -1,6 +1,6 @@
 <?php
 //connect to database class
-require("../settings/db_class.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/carrent-master/settings/db_class.php");
 
 
 class Booking extends db_connection{
@@ -29,7 +29,7 @@ class Booking extends db_connection{
         return $this->query($sql);
     }
     
-    //function to delete a bookin
+    //function to delete a booking
     function delete_booking_class($app_id){
     $sql = "DELETE FROM `appointment` WHERE `app_id`='$app_id'";
     return $this->query($sql);

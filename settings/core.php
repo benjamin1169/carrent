@@ -1,11 +1,10 @@
 <?php
 //start session
 session_start(); 
-// if(!isset($_SESSION['user_id'])){
-    
-//     header("Location: ../?error=You are not logged in");
-// }
-
+/*
+if(!isset($_SESSION['user_id'])){
+    header("Location: ../?error=You are not logged in");
+}*/
 //for header redirection
 ob_start();
 

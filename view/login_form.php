@@ -56,7 +56,7 @@
       </div>
         <div class="signup-form">
           <div class="title">Register</div>
-        <form action="../actions/registerprocess.php" method="POST">
+        <form class="form-validation no-validate" action="../actions/registerprocess.php" method="POST">
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user"></i>
@@ -86,5 +86,3 @@
   </div>
 </body>
 </html>
- 
-

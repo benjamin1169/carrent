@@ -1,7 +1,7 @@
 <?php
     session_start();
     include "../controllers/booking_controller.php";
-	require "../functions/functions.php";
+	  require "../functions/functions.php";
 	$ip = getIPAddress(); 
     $apnt = display_booking($_SESSION["user_id"]);
 	$total = 0;
@@ -33,7 +33,7 @@
 
 <body>
 
-	<h2 style="color:green">TRANSFORMATION SALON</h1>
+	<h2 style="color:green">CAR RENT</h1>
 	
 	<b> Thank you for choosing a time with us. 
 	</b>
@@ -63,10 +63,16 @@
 				<td>' .$value["app_date"] . '</td>
 				<td>' .$value["app_time"] . '</td>
               <td>
-                <form class="form-inline" method="POST" action="./update_app.php">
+                <form class="form-inline" method="GET" action="./update_app.php">
                   <input class="form-control mr-sm-2" type="hidden" value="'.$ip.'" name="ip">
                   <input class="form-control mr-sm-2" type="hidden" value="'. $_SESSION["user_id"].'" name="customer_id">
                   <input class="form-control mr-sm-2" type="hidden" name="app_id" value =" '.$value["app_id"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="category" value =" '.$value["category"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="service" value =" '.$value["service"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="date" value =" '.$value["app_date"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="time" value =" '.$value["app_time"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="service_name" value =" '.$value["service_name"].'">
+                  <input class="form-control mr-sm-2" type="hidden" name="cat_name" value =" '.$value["cat_name"].'">
                   <input type="submit" name="update_qty" value="Update Appointment">
                 </form>
               </td>

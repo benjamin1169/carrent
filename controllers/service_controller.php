@@ -1,6 +1,6 @@
 <?php
 
-include_once (dirname(__FILE__)).'/../classes/service_class.php';
+require(dirname(__FILE__)).'/../classes/service_class.php';
 
 
 //CONTROLLER FOR CATEGORY 
@@ -21,7 +21,7 @@ function select_all_cat_controller(){
   return $category_allselect->select_all_category();
 }
   
-function updateCategory_ctr($id, $categoryname){
+function updateCategory_ctr($categoryname, $id){
     $update_category= new Service();
     return $update_category->updatecategory_cls($categoryname, $id);
   }
