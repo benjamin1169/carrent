@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/settings/core.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/controllers/customer_controller.php");
-// require_once $_SERVER['DOCUMENT_ROOT']."/../../../controllers/service_controller.php";
+require_once($_SERVER['DOCUMENT_ROOT']."/carrent-master/settings/core.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/carrent-master/controllers/customer_controller.php");
+// require_once $_SERVER['DOCUMENT_ROOT']."/carrent-master/../../../controllers/service_controller.php";
 $customers = returnallCustomer_ctr();
 // $services = select_all_service_controller();
 ?>
